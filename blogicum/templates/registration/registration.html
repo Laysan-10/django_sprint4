@@ -1,4 +1,5 @@
 ﻿{% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 <div class="auth-container">
@@ -9,80 +10,4 @@
         <button type="submit" class="auth-button">Зарегистрироваться</button>
     </form>
 </div>
-
-<style>
-    .auth-container {
-        max-width: 400px;
-        margin: 40px auto;
-        padding: 30px;
-        background: #ffffff;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .auth-title {
-        text-align: center;
-        color: #2c3e50;
-        margin-bottom: 25px;
-        font-size: 24px;
-    }
-
-    .auth-form {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .auth-form p {
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .auth-form label {
-        font-weight: 500;
-        color: #4a5568;
-        font-size: 14px;
-    }
-
-    .auth-form input {
-        padding: 12px 15px;
-        border: 1px solid #e2e8f0;
-        border-radius: 6px;
-        font-size: 15px;
-        transition: border-color 0.3s;
-    }
-
-    .auth-form input:focus {
-        outline: none;
-        border-color: #4299e1;
-        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
-    }
-
-    .auth-button {
-        background-color: #4299e1;
-        color: white;
-        border: none;
-        padding: 12px;
-        border-radius: 6px;
-        font-size: 16px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        margin-top: 10px;
-    }
-
-    .auth-button:hover {
-        background-color: #3182ce;
-    }
-
-    .errorlist {
-        color: #e53e3e;
-        font-size: 13px;
-        margin-top: 5px;
-        list-style: none;
-        padding: 0;
-    }
-</style>
 {% endblock %}
