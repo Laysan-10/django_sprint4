@@ -1,4 +1,9 @@
 import os
+import django
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blogicum.settings')
+django.setup()
+
 import re
 import time
 from http import HTTPStatus
@@ -25,6 +30,9 @@ from django.http import HttpResponse
 from django.test import override_settings
 from django.test.client import Client
 from mixer.backend.django import mixer as _mixer
+
+# далее остальной код...
+
 
 N_PER_FIXTURE = 3
 N_PER_PAGE = 10
