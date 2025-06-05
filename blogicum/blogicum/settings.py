@@ -17,8 +17,8 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Путь к вашей папке static
-]  # Отключаем проверку
+    os.path.join(BASE_DIR, 'blogicum/static'),  # Путь к вашей папке static
+] # Отключаем проверку
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/

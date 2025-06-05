@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.contrib.auth.views import LogoutView as DjangoLogoutView
 from django.views.generic import TemplateView
+from django.contrib.auth import logout
+from django.views.generic import View
+from django.shortcuts import redirect
 
 
 def csrf_failure(request, reason=""):
@@ -24,6 +27,7 @@ class RulesView(TemplateView):
     template_name = 'pages/rules.html'
 
 
-class LogoutView(DjangoLogoutView):
-    template_name = 'registration/logged_out.html'
-    next_page = None  # Отключаем автоматическое перенаправление
+class LogoutView(View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return render(request, 'registration/logged_out.html')

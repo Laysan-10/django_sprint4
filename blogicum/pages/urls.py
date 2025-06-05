@@ -2,7 +2,6 @@
 from .views import AboutView, RulesView, LogoutView
 
 
-
 app_name = 'pages'
 
 
