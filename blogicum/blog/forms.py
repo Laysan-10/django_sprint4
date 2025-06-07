@@ -1,31 +1,40 @@
-﻿from django import forms
-from .models import Post, Comment
+from django import forms
+from django.utils import timezone
 from django.contrib.auth import get_user_model
-
+from .models import Post, Comment
 
 User = get_user_model()
 
 
 class PostForm(forms.ModelForm):
     class Meta:
+        # Указываем модель, на основе которой должна строиться форма.
         model = Post
-        fields = ('title', 'text', 'pub_date', 'location', 'category', 'image', 'is_published')
+        # Указываем, что надо отобразить все поля.
+        fields = ['title', 'text', 'pub_date', 'location', 'category',
+                  'is_published', 'image']
         widgets = {
-            'pub_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-            'is_published': forms.CheckboxInput(),
+            'pub_date': forms.DateTimeInput(attrs={
+                'type': 'datetime-local',  # HTML5 input type
+                'class': 'form-control'   # Дополнительные классы, если нужно
+            })
         }
 
+    def clean_publiclic_date(self):
+        pub_date = self.cleaned_data['pub_date']
+        if pub_date:
+            # Ensure pub_date is timezone-aware
+            if not timezone.is_aware(pub_date):
+                # Assume input is in the project's TIME_ZONE and make it aware
+                pub_date = timezone.make_aware(
+                    pub_date, timezone=timezone.get_default_timezone())
+            return pub_date
+        return pub_date
 
-class CommentForm(forms.ModelForm):
+
+class CommentariesForm(forms.ModelForm):
     class Meta:
+        # Указываем модель, на основе которой должна строиться форма.
         model = Comment
-        fields = ('text',)
-        widgets = {
-            'text': forms.Textarea(attrs={'rows': 3}),
-        }
-
-
-class ProfileEditForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['first_name', 'last_name', 'email']
+        # Указываем, что надо отобразить все поля.
+        fields = ['text']
